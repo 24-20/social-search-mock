@@ -1,0 +1,266 @@
+/* The mock's own chrome. Deliberately not YouTube- or TikTok-shaped so it never
+   gets mistaken for part of the clone in a screenshot. */
+
+.ed-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1000;
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid #3a3a3a;
+  border-radius: 18px;
+  background: #1b1b1b;
+  color: #eaeaea;
+  font: 500 13px/34px ui-sans-serif, system-ui, sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.ed-toggle:hover {
+  background: #262626;
+}
+
+.ed {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  width: 420px;
+  display: flex;
+  flex-direction: column;
+  background: #141414;
+  border-left: 1px solid #2c2c2c;
+  color: #e8e8e8;
+  font: 400 13px/1.45 ui-sans-serif, system-ui, -apple-system, sans-serif;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.45);
+}
+
+.ed-head {
+  padding: 12px 14px;
+  border-bottom: 1px solid #2c2c2c;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ed-head h2 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  flex: 1;
+}
+
+.ed-routes {
+  display: flex;
+  gap: 4px;
+  padding: 10px 14px 0;
+}
+
+.ed-routes a {
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: #1f1f1f;
+  color: #bdbdbd;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.ed-routes a.is-active {
+  background: #2f6feb;
+  color: #fff;
+}
+
+.ed-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 14px 24px;
+}
+
+.ed-section {
+  margin-top: 14px;
+}
+
+.ed-section > h3 {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+}
+
+.ed-field {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.ed-field > span {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 11px;
+  color: #9a9a9a;
+}
+
+.ed input[type='text'],
+.ed input[type='url'],
+.ed textarea,
+.ed select {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background: #0f0f0f;
+  color: #eee;
+  font: inherit;
+  box-sizing: border-box;
+}
+
+.ed textarea {
+  resize: vertical;
+  min-height: 52px;
+}
+
+.ed input:focus,
+.ed textarea:focus,
+.ed select:focus {
+  outline: 0;
+  border-color: #2f6feb;
+}
+
+.ed-row {
+  display: flex;
+  gap: 8px;
+}
+
+.ed-row > * {
+  flex: 1;
+  min-width: 0;
+}
+
+.ed-btn {
+  padding: 5px 10px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background: #1d1d1d;
+  color: #ddd;
+  font: inherit;
+  cursor: pointer;
+}
+
+.ed-btn:hover {
+  background: #272727;
+}
+
+.ed-btn.is-primary {
+  background: #2f6feb;
+  border-color: #2f6feb;
+  color: #fff;
+}
+
+.ed-btn.is-danger:hover {
+  background: #4a1f1f;
+  border-color: #7a3030;
+}
+
+.ed-card {
+  margin-bottom: 6px;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  background: #181818;
+  overflow: hidden;
+}
+
+.ed-card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+}
+
+.ed-card-head img {
+  width: 40px;
+  height: 26px;
+  border-radius: 4px;
+  object-fit: cover;
+  background: #222;
+  flex-shrink: 0;
+}
+
+.ed-card-head .ed-card-title {
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.ed-card-head.is-hidden .ed-card-title {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+
+.ed-mini {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #999;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.ed-mini:hover {
+  background: #2a2a2a;
+  color: #fff;
+}
+
+.ed-card-body {
+  padding: 8px;
+  border-top: 1px solid #2a2a2a;
+}
+
+.ed-drop {
+  padding: 10px;
+  border: 1px dashed #3a3a3a;
+  border-radius: 6px;
+  text-align: center;
+  color: #888;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.ed-drop.is-over {
+  border-color: #2f6feb;
+  color: #9dbcff;
+  background: rgba(47, 111, 235, 0.08);
+}
+
+.ed-check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #cfcfcf;
+  margin-bottom: 8px;
+}
+
+.ed-note {
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: #7d7d7d;
+}
+
+.ed-foot {
+  padding: 10px 14px;
+  border-top: 1px solid #2c2c2c;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}

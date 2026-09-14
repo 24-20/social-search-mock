@@ -1,0 +1,567 @@
+/*
+ * Values measured off youtube.com/results at a 1920px layout viewport
+ * (1280px window at 67% zoom) via getComputedStyle, not eyeballed.
+ * Layout: guide 240, then a 1280 column centred in the rest with 15px of
+ * inner padding, which puts the 1250px results column at x=444.
+ */
+
+.yt {
+  --yt-bg: #0f0f0f;
+  --yt-text: #f1f1f1;
+  --yt-muted: #aaa;
+  --yt-hairline: #303030;
+  --yt-hover: rgba(255, 255, 255, 0.1);
+  background: var(--yt-bg);
+  color: var(--yt-text);
+  font-family: Roboto, Arial, sans-serif;
+  min-height: 100vh;
+}
+
+.yt a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------------------------------------------------------------- masthead */
+
+.yt-masthead {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: 56px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  background: var(--yt-bg);
+}
+
+.yt-masthead-start {
+  display: flex;
+  align-items: center;
+  width: 169px;
+  flex-shrink: 0;
+}
+
+.yt-icon-btn {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--yt-text);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.yt-icon-btn:hover {
+  background: var(--yt-hover);
+}
+
+.yt-logo {
+  margin-left: 16px;
+  display: flex;
+  align-items: center;
+}
+
+/* YouTube gives the centre region a 732px cap, auto-centres it between the
+   start and end blocks, and right-aligns the 656px search row inside it. */
+.yt-masthead-center {
+  flex: 1;
+  max-width: 732px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.yt-search {
+  display: flex;
+  align-items: center;
+  width: 656px;
+}
+
+.yt-search-box {
+  flex: 1;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 4px 0 16px;
+  background: #121212;
+  border: 1px solid var(--yt-hairline);
+  border-right: 0;
+  border-radius: 40px 0 0 40px;
+}
+
+.yt-search-box input {
+  flex: 1;
+  min-width: 0;
+  height: 24px;
+  padding: 1px 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #fff;
+  font: 400 16px/22px Roboto, Arial, sans-serif;
+}
+
+.yt-search-box input::placeholder {
+  color: #888;
+}
+
+.yt-search-submit {
+  width: 64px;
+  height: 40px;
+  flex-shrink: 0;
+  border: 1px solid var(--yt-hairline);
+  border-radius: 0 40px 40px 0;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.yt-search-submit:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.yt-voice {
+  width: 40px;
+  height: 40px;
+  margin-left: 16px;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--yt-text);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+ /* 225px is what YouTube reserves here, and the centre block is centred
+    between start and end — so this width is load-bearing for where the search
+    bar lands, not just for the buttons. */
+.yt-masthead-end {
+  width: 225px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.yt-create {
+  height: 40px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--yt-text);
+  font: 500 14px/40px Roboto, Arial, sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.yt-create:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+ /* The reference reserves 54px here with the 32px picture 6px in from the
+    left, which is what puts "Opprett" and the bell where they sit. */
+.yt-avatar-btn {
+  width: 54px;
+  height: 34px;
+  padding: 1px 0 1px 6px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.yt-avatar-btn span {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #7e22ce;
+  color: #fff;
+  font: 500 14px/32px Roboto, Arial, sans-serif;
+  text-align: center;
+}
+
+/* ------------------------------------------------------------------- guide */
+
+.yt-body {
+  display: flex;
+  align-items: flex-start;
+}
+
+.yt-guide {
+  position: sticky;
+  top: 56px;
+  width: 240px;
+  flex-shrink: 0;
+  height: calc(100vh - 56px);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.yt-guide::-webkit-scrollbar {
+  display: none;
+}
+
+.yt-guide-section {
+  padding: 12px;
+}
+
+.yt-guide-section:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.yt-guide-title {
+  font: 500 16px/22px Roboto, Arial, sans-serif;
+  color: var(--yt-text);
+  padding: 6px 12px 4px;
+}
+
+.yt-guide-entry {
+  width: 204px;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.yt-guide-entry:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.yt-guide-entry.is-active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.yt-guide-entry .yt-guide-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 24px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+}
+
+.yt-guide-entry .yt-guide-label {
+  font: 400 14px/20px Roboto, Arial, sans-serif;
+  color: var(--yt-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.yt-guide-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ----------------------------------------------------------------- content */
+
+.yt-main {
+  flex: 1;
+  min-width: 0;
+  padding: 0 24px;
+}
+
+.yt-col {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.yt-chipbar {
+  position: sticky;
+  top: 56px;
+  z-index: 30;
+  height: 56px;
+  padding-bottom: 4px;
+  display: flex;
+  align-items: center;
+  background: var(--yt-bg);
+}
+
+.yt-chips {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.yt-chips::-webkit-scrollbar {
+  display: none;
+}
+
+.yt-chip {
+  height: 32px;
+  flex-shrink: 0;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--yt-text);
+  font: 500 14px/20px Roboto, Arial, sans-serif;
+  cursor: pointer;
+}
+
+.yt-chip.is-active {
+  background: #f1f1f1;
+  color: #0f0f0f;
+}
+
+.yt-filter {
+  width: 94px;
+  height: 40px;
+  margin-left: 24px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 0;
+  border-radius: 20px;
+  background: transparent;
+  color: var(--yt-text);
+  font: 500 14px/20px Roboto, Arial, sans-serif;
+  cursor: pointer;
+}
+
+.yt-filter:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* -------------------------------------------------------------- video card */
+
+.yt-video {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.yt-thumb {
+  position: relative;
+  width: 500px;
+  height: 281px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #181818;
+}
+
+.yt-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.yt-duration {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font: 500 12px/18px Roboto, Arial, sans-serif;
+}
+
+.yt-info {
+  flex: 1;
+  min-width: 0;
+  margin-left: 16px;
+}
+
+.yt-title-row {
+  display: flex;
+  align-items: flex-start;
+}
+
+.yt-title {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font: 400 18px/26px Roboto, Arial, sans-serif;
+  color: var(--yt-text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.yt-menu {
+  width: 40px;
+  height: 40px;
+  margin-top: -8px;
+  margin-bottom: -8px;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--yt-text);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.yt-metaline {
+  font: 400 12px/18px Roboto, Arial, sans-serif;
+  color: var(--yt-muted);
+}
+
+.yt-metaline .sep {
+  margin: 0 4px;
+}
+
+.yt-channel {
+  height: 51px;
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.yt-channel img {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.yt-channel-name {
+  font: 400 12px/18px Roboto, Arial, sans-serif;
+  color: var(--yt-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.yt-desc {
+  margin-bottom: 8px;
+  font: 400 12px/18px Roboto, Arial, sans-serif;
+  color: var(--yt-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.yt-badges {
+  margin-bottom: 8px;
+  display: flex;
+  gap: 4px;
+}
+
+.yt-badge {
+  padding: 0 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--yt-muted);
+  font: 500 12px/18px Roboto, Arial, sans-serif;
+}
+
+/* ------------------------------------------------------------ shorts shelf */
+
+.yt-shelf {
+  margin: 24px 0;
+}
+
+.yt-shelf-header {
+  height: 48px;
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+}
+
+.yt-shelf-header .yt-shelf-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+}
+
+.yt-shelf-header h2 {
+  margin: 0;
+  font: 700 20px/28px Roboto, Arial, sans-serif;
+  color: var(--yt-text);
+}
+
+.yt-shelf-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.yt-short {
+  min-width: 0;
+}
+
+.yt-short-cover {
+  position: relative;
+  aspect-ratio: 237 / 356;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #181818;
+}
+
+.yt-short-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.yt-short-meta {
+  padding: 8px 36px 0 0;
+}
+
+.yt-short-title {
+  margin: 0;
+  font: 500 16px/22px Roboto, Arial, sans-serif;
+  color: var(--yt-text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.yt-short-views {
+  margin-top: 4px;
+  font: 400 14px/20px Roboto, Arial, sans-serif;
+  color: var(--yt-muted);
+}
+
+@media (max-width: 1500px) {
+  .yt-shelf-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1200px) {
+  .yt-thumb {
+    width: 360px;
+    height: 202px;
+  }
+  .yt-shelf-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .yt-guide {
+    display: none;
+  }
+}
