@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { Card } from '../types'
 import { useStore, updateTikTok } from '../lib/store'
-import { TT_FOLLOWING, TT_NAV } from '../lib/seed'
+import { TT_NAV } from '../lib/seed'
 import { avatarPlaceholder, coverPlaceholder } from '../lib/placeholder'
 import {
   TTCollapse,
@@ -89,17 +89,6 @@ export default function TikTok() {
               </div>
             ))}
 
-            <div className="tt-nav-sep" />
-            <div className="tt-following-title">Following accounts</div>
-            {TT_FOLLOWING.map((f) => (
-              <div className="tt-following-row" key={f.handle}>
-                <img src={avatarPlaceholder(f.name)} alt="" />
-                <div style={{ minWidth: 0 }}>
-                  <div className="tt-following-name">{f.name}</div>
-                  <div className="tt-following-handle">{f.handle}</div>
-                </div>
-              </div>
-            ))}
           </div>
         </nav>
       ) : null}

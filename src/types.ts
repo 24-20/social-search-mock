@@ -16,7 +16,7 @@ export type Card = {
   views: string
   likes: string
   comments: string
-  /** "for 2 måneder siden" on YouTube, "9-4" / "6d ago" on TikTok. */
+  /** "5 months ago" on YouTube, "9-4" / "6d ago" on TikTok. */
   age: string
   /** YouTube only. */
   duration: string

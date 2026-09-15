@@ -37,7 +37,7 @@ function VideoRow({ card }: { card: Card }) {
       <div className="yt-info">
         <div className="yt-title-row">
           <h3 className="yt-title">{card.title}</h3>
-          <button className="yt-menu" aria-label="Handlingsmeny">
+          <button className="yt-menu" aria-label="Action menu">
             <DotsIcon />
           </button>
         </div>
@@ -90,7 +90,7 @@ export default function YouTube() {
     <div className="yt">
       <header className="yt-masthead">
         <div className="yt-masthead-start">
-          <button className="yt-icon-btn" aria-label="Meny">
+          <button className="yt-icon-btn" aria-label="Menu">
             <MenuIcon />
           </button>
           <a className="yt-logo" href="#">
@@ -103,14 +103,14 @@ export default function YouTube() {
             <div className="yt-search-box">
               <input
                 value={s.query}
-                placeholder="Søk"
+                placeholder="Search"
                 onChange={(e) => updateYouTube((y) => ({ ...y, query: e.target.value }))}
               />
             </div>
-            <button className="yt-search-submit" aria-label="Søk">
+            <button className="yt-search-submit" aria-label="Search">
               <SearchIcon size={24} />
             </button>
-            <button className="yt-voice" aria-label="Søk med stemmen">
+            <button className="yt-voice" aria-label="Search with your voice">
               <MicIcon size={24} />
             </button>
           </div>
@@ -119,12 +119,12 @@ export default function YouTube() {
         <div className="yt-masthead-end">
           <button className="yt-create">
             <CreateIcon size={24} />
-            Opprett
+            Create
           </button>
-          <button className="yt-icon-btn" aria-label="Varsler">
+          <button className="yt-icon-btn" aria-label="Notifications">
             <BellIcon />
           </button>
-          <button className="yt-avatar-btn" aria-label="Kontomeny">
+          <button className="yt-avatar-btn" aria-label="Account menu">
             <span>S</span>
           </button>
         </div>
@@ -139,11 +139,7 @@ export default function YouTube() {
                 {section.items.map((item) => (
                   <div className="yt-guide-entry" key={item}>
                     <span className="yt-guide-icon">
-                      {section.title === 'Abonnementer' ? (
-                        <img className="yt-guide-avatar" src={avatarPlaceholder(item)} alt="" />
-                      ) : (
-                        <GuideIcon name={item} />
-                      )}
+                      <GuideIcon name={item} />
                     </span>
                     <span className="yt-guide-label">{item}</span>
                   </div>
@@ -169,7 +165,7 @@ export default function YouTube() {
               </div>
               <button className="yt-filter">
                 <FilterIcon size={24} />
-                Filtre
+                Filters
               </button>
             </div>
 

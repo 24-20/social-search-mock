@@ -13,7 +13,7 @@ npm run dev
 - <http://localhost:5175/tiktok> — TikTok search results
 
 It is a local mock and nothing more: no login, no form that collects anything,
-no network calls except the YouTube thumbnail images the seed data points at.
+and no network calls at all — every cover and avatar is drawn in the page.
 
 ## The target viewport
 
@@ -94,8 +94,8 @@ eye and only showed up under measurement:
 - The duration pill was `rgba(0,0,0,.8)` with letter-spacing; the reference is
   `rgba(0,0,0,.6)` with none.
 - The result badge was the wrong colour, radius and padding, and the seed shipped
-  a made-up `Tutorial` chip — the real page shows `Teksting` and `4K`.
-- "Opprett" is a 109x40 labelled pill, not a round icon button, and the avatar
+  a made-up `Tutorial` chip — the real page shows a captions chip and `4K`.
+- "Create" is a 109x40 labelled pill, not a round icon button, and the avatar
   block is 54px wide — together these put the whole masthead-end cluster 13px off.
 - The search field had an inset shadow the reference doesn't have; the TikTok
   side nav had a divider the reference doesn't have.
@@ -150,13 +150,30 @@ the real page doesn't. On TikTok the cover overlay is a single count, so the
 ## Seed data
 
 Both routes start from the real "axiom trading" results as captured on
-2026-09-14 (a Norwegian-locale YouTube session, hence `avspillinger` and
-`for 2 måneder siden` — all editable).
+2026-09-14. Titles, handles and dates are the captured ones; the UI text is
+English throughout, and everything is editable.
 
-YouTube thumbnails load from `i.ytimg.com` by video id. **TikTok covers do not**:
-their URLs are signed and expire within hours, so those cards start on generated
-gradient placeholders and expect you to drop your own images in. The same
-generator supplies initial-letter avatars until you replace them.
+What is deliberately not the capture:
+
+- **View counts are boosted.** Every card reads in the millions — `2.4M views`
+  on YouTube, `12.4M` on TikTok, with the cover overlay set to views rather
+  than likes.
+- **The result set is trimmed** to what fits one screenshot: two YouTube
+  results, the Shorts shelf, one more result under it, and seven TikTok cards.
+- **The sidebars carry no accounts.** YouTube's subscription rows and TikTok's
+  "Following accounts" block are gone — they are avatars and real names, and
+  they are the first thing anyone recognises in a screenshot.
+
+Covers are real thumbnails cropped out of screen captures and served from
+`public/thumbs` (`yt-*` 16:9, `short-*` and `tt-*` vertical). Creator pictures
+are stock money / Miami / crypto shots in `public/avatars`. Nothing is
+hotlinked, so no URL expires and no third-party request lands in the shot. A
+card with an empty `thumb` or `avatar` falls back to the generated gradient
+cover and the initial-letter avatar.
+
+Creators are deliberately mixed: seven different TikTok accounts rather than
+one posting three of the seven, and the verified check is on three of them, not
+all — a grid where every account is verified reads as staged.
 
 ## Layout
 
@@ -166,10 +183,12 @@ src/
   types.ts              the Card shape both routes share
   lib/store.ts          tiny useSyncExternalStore store + localStorage
   lib/seed.ts           the captured data
-  lib/placeholder.ts    generated covers and avatars
+  lib/placeholder.ts    fallback covers and initial avatars
   youtube/              YouTube.tsx, youtube.css, icons.tsx
   tiktok/               TikTok.tsx, tiktok.css, icons.tsx
   editor/               Editor.tsx, ImagePicker.tsx, editor.css
+public/thumbs/          the cropped cover images
+public/avatars/         the creator pictures
 ```
 
 The editor is deliberately not styled like either site, so it can never be

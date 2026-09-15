@@ -178,7 +178,7 @@ function blankCard(route: Route): Card {
     handle: '@channel',
     avatar: '',
     verified: false,
-    views: route === 'youtube' ? '0 avspillinger' : '',
+    views: route === 'youtube' ? '0 views' : '',
     likes: route === 'tiktok' ? '0' : '',
     comments: '',
     age: route === 'youtube' ? 'for 1 dag siden' : 'today',
@@ -461,7 +461,7 @@ export default function Editor({ route }: { route: Route }) {
                       visible: true,
                       thumb: '',
                       title: 'New short',
-                      views: '0 avspillinger',
+                      views: '0 views',
                     },
                   ],
                 }))

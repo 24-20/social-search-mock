@@ -172,7 +172,7 @@
 }
 
  /* The reference reserves 54px here with the 32px picture 6px in from the
-    left, which is what puts "Opprett" and the bell where they sit. */
+    left, which is what puts "Create" and the bell where they sit. */
 .yt-avatar-btn {
   width: 54px;
   height: 34px;
@@ -264,12 +264,6 @@
   text-overflow: ellipsis;
 }
 
-.yt-guide-avatar {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  object-fit: cover;
-}
 
 /* ----------------------------------------------------------------- content */
 
